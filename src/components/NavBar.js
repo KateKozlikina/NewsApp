@@ -9,11 +9,14 @@ const NavBar = () => (
   <div>
     <Navbar color="light" light expand="md">
       <NavbarBrand href="/">Home</NavbarBrand>
-      <Button>
-        Профиль
+      <Button href="/profile">
+        Profile
       </Button>
-      <Button>
-        Войти
+      <Button href="/news">
+        News
+      </Button>
+      <Button href="/login">
+        Login
       </Button>
     </Navbar>
   </div>
