@@ -10,34 +10,44 @@ import {
 import { Link } from 'react-router-dom';
 
 class Login extends React.PureComponent {
-  username = '';
-
-  password = '';
+  state = {
+    username: '',
+    password: '',
+  }
 
   handleEvent = (e) => {
     e.preventDefault();
     // eslint-disable-next-line react/prop-types
     // eslint-disable-next-line react/destructuring-assignment
-    this.props.login(this.username, this.password);
+    this.props.login(this.state.username, this.state.password);
   }
 
   changeEmail = (e) => {
     e.preventDefault();
-    this.username = e.target.value;
+    const { value } = e.target;
+    this.setState(prev => ({
+      ...prev,
+      username: value,
+    }));
   }
 
   changePassword = (e) => {
     e.preventDefault();
-    this.password = e.target.value;
+    const { value } = e.target;
+    this.setState(prev => ({
+      ...prev,
+      password: value,
+    }));
   }
 
   render() {
     console.log(this);
     // eslint-disable-next-line react/prop-types
-    const { success } = this.props;
+    const { success, errorMsg } = this.props;
     return (
       <Form>
         <FormGroup>
+          {errorMsg && <p>{errorMsg}</p>}
           <Label for="exampleEmail">Email</Label>
           <Input type="email" name="email" id="exampleEmail" placeholder="enter your email" onChange={this.changeEmail} />
         </FormGroup>

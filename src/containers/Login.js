@@ -12,12 +12,12 @@ const LoginContainer = (props) => {
     // eslint-disable-next-line react/destructuring-assignment
       login={props.login}
       // eslint-disable-next-line react/destructuring-assignment
-      success={props.success}
+      errorMsg={props.errorMsg}
     />
   );
 };
 const mapStateToProps = store => ({
-  success: store.login.success,
+  errorMsg: store.login.errorMsg,
 });
 
 const mapDispatchToProps = dispatch => ({
