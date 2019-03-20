@@ -7,7 +7,7 @@ import {
   Input,
   Button,
 } from 'reactstrap';
-import { Link } from 'react-router-dom';
+import { Redirect, Link } from 'react-router-dom';
 
 class Login extends React.PureComponent {
   state = {
@@ -15,10 +15,11 @@ class Login extends React.PureComponent {
     password: '',
   }
 
-  handleEvent = (e) => {
+  handleSubmit = (e) => {
     e.preventDefault();
     // eslint-disable-next-line react/prop-types
     // eslint-disable-next-line react/destructuring-assignment
+    console.log('gfh', this.state);
     this.props.login(this.state.username, this.state.password);
   }
 
@@ -44,18 +45,22 @@ class Login extends React.PureComponent {
     console.log(this);
     // eslint-disable-next-line react/prop-types
     const { success, errorMsg } = this.props;
+    if (success) {
+      console.log('rrff');
+      return <Redirect to={{pathname:'/profile'}} />
+    }
     return (
-      <Form>
+      <Form href={success && '/profile'} onSubmit={this.handleSubmit}>
         <FormGroup>
           {errorMsg && <p>{errorMsg}</p>}
           <Label for="exampleEmail">Email</Label>
-          <Input type="email" name="email" id="exampleEmail" placeholder="enter your email" onChange={this.changeEmail} />
+          <Input name="email" id="exampleEmail" placeholder="enter your email" onChange={this.changeEmail} />
         </FormGroup>
         <FormGroup>
           <Label for="examplePassword">Password</Label>
           <Input type="password" name="password" id="examplePassword" placeholder="enter your password" onChange={this.changePassword} />
         </FormGroup>
-        <Button onClick={this.handleEvent}><Link to={success && '/profile'}>Login</Link></Button>
+        <Button type="submit">Login</Button>
       </Form>
     );
   }

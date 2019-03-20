@@ -4,17 +4,19 @@ import NavBar from './components/NavBar';
 import Home from './components/Home';
 import Login from './containers/Login';
 import NewsPage from './components/NewsPage';
-import Profile from './components/Profile';
+import ProfileContainer from './containers/Profile';
 
 const App = () => (
-  <div className="container">
+  <div>
     <NavBar />
-    <Switch>
-      <Route exact path="/" component={Home} />
-      <Route path="/login" component={Login} />
-      <Route path="/news" component={NewsPage} />
-      <Route path="/profile" component={Profile} />
-    </Switch>
+    <div className="container">
+      <Switch>
+        <Route exact path="/" component={Home} />
+        <Route path="/login" component={Login} />
+        <Route path="/news" component={NewsPage} />
+        <Route path="/profile" component={ProfileContainer} />
+      </Switch>
+    </div>
   </div>
 );
 

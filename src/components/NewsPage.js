@@ -3,7 +3,7 @@ import data from './data';
 import News from './News';
 
 const NewsPage = () => (
-  <div>
+  <div className="container">
     <h1>News</h1>
     {
     data.map(news => (
